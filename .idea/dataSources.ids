@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="data-dev" uuid="bd5cbf08-9de8-4644-9586-7e622293ac95">
+    <database-info product="SQLite" version="3.7.6.3" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+    <table name="alembic_version" schema="" catalog="" type="TABLE">
+      <column name="version_num" sqlType="VARCHAR(32)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+    </table>
+    <table name="users" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR(64)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="password_hash" sqlType="VARCHAR(128)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR(64)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <index name="ix_users_username" unique="true" columns="username"/>
+      <index name="ix_users_email" unique="true" columns="email"/>
+    </table>
+  </data-source>
+</component>
