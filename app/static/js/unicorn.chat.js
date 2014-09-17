@@ -5,26 +5,26 @@
 **/
 
 $(document).ready(function(){
-	namespace = ''; // change to an empty string to use the global namespace
+	namespace = '/chat'; // change to an empty string to use the global namespace
 
     // the socket.io documentation recommends sending an explicit package upon connection
     // this is specially important when using the global namespace
     var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
     socket.on('connect', function() {
-        socket.emit('my event', {data: 'I\'m connected!'});
+        socket.emit('my event', {data: 'I\'m connected!', nickname: 'Chat!'});
     });
 
     // event handler for server sent data
     // the data is displayed in the "Received" section of the page
     socket.on('my response', function(msg) {
         //$('#log').append('<br>Received #' + msg.count + ': ' + msg.data);
-        add_message('me','../static/img/demo/av1.jpg', msg.data, true)
+        add_message('test' ,'../static/img/demo/av1.jpg', msg.data, true)
     });
 
     // handlers for the different forms in the page
     // these send data to the server in a variety of ways
     $('form#emit').submit(function(event) {
-        socket.emit('my event', {data: $('#emit_data').val()});
+        socket.emit('my event', {data: $('#emit_data').val(), nickname: ''});
         return false;
     });
     $('form#broadcast').submit(function(event) {
@@ -50,14 +50,7 @@ $(document).ready(function(){
 	var message_box_input = $('.chat-message input[type="text"]');
 	var messages_inner = $('#chat-messages-inner');
 
-	$('.chat-message button').click(function(){
-		var input = $(this).parent().siblings('input[type=text]');		
-		if(input.val() != ''){
-			add_message('You','../static/img/demo/av1.jpg',input.val(),true);
-		} else {
-			$('.input-box').addClass('has-error');
-		}
-	});
+
 	
 	messages.niceScroll({
 		zindex: 1060

@@ -23,6 +23,11 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
+@manager.command
+def runserver():
+    from app import socketio
+    socketio.run(app)
+
 
 if __name__ == '__main__':
     manager.run()

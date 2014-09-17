@@ -1,7 +1,7 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, g
 from .forms import LoginForm, RegisterForm
 from . import auth
-from flask.ext.login import login_user, login_required, logout_user
+from flask.ext.login import login_user, login_required, logout_user, current_user
 from ..models import User
 from .. import db
 
@@ -18,7 +18,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, True)
-            return redirect('http://google.com')
+            return redirect('/chat')
         flash('Incorrect password')
     return render_template('login.html', form=LoginForm())
 
