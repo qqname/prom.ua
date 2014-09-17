@@ -25,5 +25,5 @@ def create_app(config_name):
     app.register_blueprint(chat_blueprint, url_prefix='/chat')
     app.register_blueprint(auth_blueprint)
 
-    return socketio.run(app)
+    return app
 
