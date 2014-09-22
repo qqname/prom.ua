@@ -11,11 +11,7 @@ window.onbeforeunload = function() {
     socket.emit('leaving channel', {username: username});
 };
             </script>
-			<div id="breadcrumb">
-				<a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-				<a href="#">Sample pages</a>
-				<a href="#" class="current">Suport chat</a>
-			</div>
+
 			<br />
 				<div class="row">
 					<div class="col-xs-12">
@@ -24,7 +20,7 @@ window.onbeforeunload = function() {
 								<span class="icon">
 									<i class="fa fa-comment"></i>
 								</span>
-								<h5>Support chat</h5>
+								<h5>{{ chat }}</h5>
 								<div class="buttons">
 									<a class="btn go-full-screen"><i class="fa fa-resize-full"></i></a>
 								</div>

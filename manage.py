@@ -20,7 +20,7 @@ manager.add_command('db', MigrateCommand)
 @manager.command
 def runserver():
     from app import socketio
-    socketio.run(app, host='0.0.0.0')
+    socketio.run(app, host='0.0.0.0', port=8000)
 
 
 if __name__ == '__main__':
