@@ -21,9 +21,11 @@ def create_app(config_name):
     db.init_app(app)
 
     from .chat import chat as chat_blueprint
+
     from .auth import auth as auth_blueprint
-    app.register_blueprint(chat_blueprint, url_prefix='/chat')
+    app.register_blueprint(chat_blueprint)
     app.register_blueprint(auth_blueprint)
+
 
     return app
 

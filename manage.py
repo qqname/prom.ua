@@ -1,6 +1,6 @@
 import os
 from app import create_app, db
-from app.models import User
+from app.models import User, Channel
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
 
@@ -11,7 +11,7 @@ migrate = Migrate(app, db)
 
 
 def make_shell_context():
-    return dict(app=app, db=db, User=User)
+    return dict(app=app, db=db, User=User, Channel=Channel)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
 
@@ -26,7 +26,7 @@ def test():
 @manager.command
 def runserver():
     from app import socketio
-    socketio.run(app)
+    socketio.run(app, host='0.0.0.0')
 
 
 if __name__ == '__main__':

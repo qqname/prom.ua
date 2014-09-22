@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/css/select2.css">
+    <link rel="stylesheet" href="../static/css/jquery-ui.css">
+{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="row">
+
+    <div class="col-xs-12">
+        <h1>Channels list</h1>
+    <div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="fa fa-th"></i>
+								</span>
+								<h5>Channels</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped table-hover data-table">
+									<thead>
+									<tr>
+									<th>Channel name</th>
+									<th>Description</th>
+                                    <th>Created</th>
+                                    <th>Join!</th>
+
+									</tr>
+                                    </thead>
+
+									<tbody>
+                                    {% for channel in channels %}
+									<tr>
+									<td>{{ channel.name }}</td>
+                                    <td>{{ channel.descr }}</td>
+									<td>{{ channel.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                    <td class="center"><a href="/chat/{{ channel.name }}" class="btn btn-default btn-xs btn-success">Join channel!</a></td>
+									</tr>
+                                    {% endfor %}
+                                    </tbody>
+
+								</table>
+							</div>
+						</div>
+<div class="col-xs-6 col-sm-3 col-lg-3">
+    <div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="fa fa-file"></i>
+								</span>
+								<h5>Create channel</h5>
+							</div>
+							<div class="widget-content">
+                                <form method="post">
+                    {{ form.csrf_token }}
+                            {% if form.csrf_token.errors %}
+                                <div class="warning">You have submitted an invalid CSRF token</div>
+                    {% endif %}
+        {{ form.channel_name(class="form-control", placeholder="Channel name")}}
+        {{ form.descr(class="form-control", placeholder="Channel description")}}
+        {{ form.submit(class="btn btn-block btn-primary btn-default", value="Create")}}
+
+    </form>
+</div>
+</div>
+
+
+</div>
+
+</div>
+    </div>
+{% endblock %}
+            {% block scripts %}
+            <script src="../static/js/jquery.min.js"></script>
+            <script src="../static/js/jquery-ui.custom.js"></script>
+            <script src="../static/js/bootstrap.min.js"></script>
+            <script src="../static/js/jquery.icheck.min.js"></script>
+            <script src="../static/js/select2.min.js"></script>
+            <script src="../static/js/jquery.dataTables.min.js"></script>
+
+            <script src="../static/js/jquery.nicescroll.min.js"></script>
+            <script src="../static/js/unicorn.js"></script>
+            <script src="../static/js/unicorn.tables.js"></script>
+{% endblock %}

@@ -9,16 +9,16 @@ from .. import db
 @auth.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    return redirect('/chat')
+    return redirect('/channels')
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(username=form.nickname.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, True)
-            return redirect('/chat')
+            return redirect('/channels')
         flash('Incorrect password')
     return render_template('login.html', form=LoginForm())
 

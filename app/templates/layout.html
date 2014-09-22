@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Prom.ua chat</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../static/css/font-awesome.css" />
+		<link rel="stylesheet" href="../static/css/unicorn.css" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+        {% block head %}{% endblock %}
+
+
+
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="js/respond.min.js"></script>
+		<![endif]-->
+			
+	</head>
+    <body data-color="grey" class="flat"><div id="wrapper">
+		<div id="header">
+			<h1><a href="/channels">Prom.ua chat</a></h1>
+			<a id="menu-trigger" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+
+
+		<div id="sidebar">
+
+			<ul>
+				<li><a href="/channels"><i class="fa fa-home"></i> <span>Channels</span></a></li>
+
+				<li>
+					<a href="/logout"><i class="fa fa-share"></i> <span>Logout</span></a>
+				</li>
+
+			</ul>
+		
+		</div>
+    <div id="content">
+        {% block content %}{% endblock %}
+
+
+    </div>
+		<div class="row">
+			<div id="footer" class="col-xs-12">
+				2014 for prom.ua</a>
+			</div>
+		</div>
+	<div class="white-backdrop"></div>
+    {% block scripts %}{% endblock %}
+
+	</body>
+</html>
