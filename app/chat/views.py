@@ -91,6 +91,6 @@ def leaving(message):
 
 @socketio.on('new user', namespace='/chat')
 def new_user(message):
-    emit('refresh users', {'data': message['username']}, broadcast=True)
+    emit('refresh users', {'data': message['username']}, room=message['roomname'])
 
 

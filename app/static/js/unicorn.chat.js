@@ -9,7 +9,7 @@ $(document).ready(function(){
 
             var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
             socket.on('connect', function() {
-                socket.emit('new user', {username: username});
+                socket.emit('new user', {username: username, roomname: roomname});
 
             });
 
