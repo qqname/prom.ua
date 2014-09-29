@@ -8,7 +8,7 @@ from flask import render_template, session, request, redirect
 from app import socketio
 from flask.ext.socketio import emit, join_room, leave_room
 from . import chat
-from flask.ext.login import current_user
+from flask.ext.login import current_user, login_required
 from ..models import Channel, User
 from .forms import ChannelForm
 from app import db
@@ -26,7 +26,7 @@ def background_thread():
                       {'data': 'Server generated event', 'count': count, 'nickname': 'Server'},
                       namespace='/chat')
 
-
+@login_required
 @chat.route('/chat/<chatname>')
 def index(chatname):
     global thread
@@ -37,6 +37,8 @@ def index(chatname):
     current_user.channel_id = Channel.query.filter_by(name=chatname).first().id
     return render_template('chat.html', chat=chatname, username=current_user.username, users=users)
 
+
+@login_required
 @chat.route('/channels', methods=['GET', 'POST'])
 def channels():
     channels_list = Channel.query.all()
